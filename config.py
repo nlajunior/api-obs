@@ -7,21 +7,21 @@ class Config(object):
     TEMPLATE_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     APP = None
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://pythonuser:M&1r&1903D@localhost:3306/dbdime'
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://pythonuser:M&1r&1903D@mysql_obs:3306/dbdime'
     SENDGRID_API_KEY = 'API_KEY'
 
 class DevelopmentConfig(Config):
     TESTING = False
     DEBUG = True
     IP_HOST = 'localhost'
-    PORT_HOST = 8000
+    PORT_HOST = 5000
     URL_MAIN = 'http://%s:%s/' % (IP_HOST, PORT_HOST)
 
 class TestingConfig(Config):
     TESTING = True
     DEBUG = True
     IP_HOST = 'localhost' # Aqui geralmente é um IP de um servidor na nuvem e não o endereço da máquina local
-    PORT_HOST = 5000
+    PORT_HOST = 8000
     URL_MAIN = 'http://%s:%s/' % (IP_HOST, PORT_HOST)
 
 class ProductionConfig(Config):
@@ -37,4 +37,4 @@ app_config = {
     'production': ProductionConfig()
 }
 
-app_active = os.getenv('FLASK_ENV')
+app_active = 'development'
