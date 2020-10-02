@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import desc, asc
 from config import app_active, app_config
 
 config = app_config[app_active]
@@ -22,9 +23,9 @@ class Historico(db.Model):
     def get_all(self, limit=None):
         try:
             if limit is None:
-                res = db.session.query(Historico).order_by(Historico.data_submissao).all()
+                res = db.session.query(Historico).order_by(desc(Historico.data_submissao)).all()
             else:
-                res = db.session.query(Historico).order_by(Historico.data_submissao).limit(limit).all()
+                res = db.session.query(Historico).order_by(desc(Historico.data_submissao)).limit(limit).all()
         except Exception as e:
             res = []
             print(e)
